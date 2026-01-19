@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import HorSlider from "./HorSlider";
+import { TopBrandCard, topBrandData } from "./GenInfo";
+import { useNavigate } from "react-router-dom";
 
 const ShopBy = ({ filter, title }) => {
   const [products, setProducts] = useState([]);
@@ -32,6 +34,8 @@ const ShopBy = ({ filter, title }) => {
     };
   }, []);
 
+  const navigate = useNavigate();
+
   return (
     <>
       <div className="mt-10 mb-2 text-2xl">{title}</div>
@@ -48,6 +52,9 @@ const ShopBy = ({ filter, title }) => {
               className="inline-block"
               home={true}
             />
+          ))}
+          {topBrandData.map((elem, id) => (
+            <TopBrandCard elem={elem} id={id} key={id} navigate={navigate} />
           ))}
         </div>
       </div>
